@@ -89,6 +89,7 @@ spotify status track               Shows the currently playing track.
 spotify share                      Displays the current song's Spotify URL and URI.
 spotify share url                  Displays the current song's Spotify URL and copies it to the clipboard.
 spotify share uri                  Displays the current song's Spotify URI and copies it to the clipboard.
+spotify cover                      Opens the current album cover in a browser.
 
 spotify toggle shuffle             Toggles shuffle playback mode.
 spotify toggle repeat              Toggles repeat playback mode.

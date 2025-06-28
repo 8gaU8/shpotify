@@ -91,6 +91,7 @@ showHelp () {
     echo "  share                        # Displays the current song's Spotify URL and URI."
     echo "  share url                    # Displays the current song's Spotify URL and copies it to the clipboard."
     echo "  share uri                    # Displays the current song's Spotify URI and copies it to the clipboard."
+    echo "  cover                        # Opens the current album cover in a browser."
     echo;
     echo "  toggle shuffle               # Toggles shuffle playback mode.";
     echo "  toggle repeat                # Toggles repeat playback mode.";
@@ -450,14 +451,25 @@ while [ $# -gt 0 ]; do
                 cecho "Spotify URL: $url"
                 cecho "Spotify URI: $uri"
                 echo "To copy the URL or URI to your clipboard, use:"
-                echo "\`spotify share url\` or"
-                echo "\`spotify share uri\` respectively."
+                echo "`spotify share url` or"
+                echo "`spotify share uri` respectively."
             elif [ "$2" = "url" ]; then
                 cecho "Spotify URL: $url";
                 echo -n $url | pbcopy
             elif [ "$2" = "uri" ]; then
                 cecho "Spotify URI: $uri";
                 echo -n $uri | pbcopy
+            fi
+            break ;;
+
+        "cover"  )
+            cecho "Fetching album cover..."
+            cover_url=`osascript -e 'tell application "Spotify" to artwork url of current track as string'`;
+            if [ -n "$cover_url" ]; then
+                cecho "Opening album cover in browser..."
+                cecho "$cover_url"
+            else
+                cecho "Could not retrieve album cover."
             fi
             break ;;
 
